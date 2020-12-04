@@ -54,6 +54,12 @@ public class MainWindow extends JFrame{
 		
 		MyToolBar t = new MyToolBar();
 		add(BorderLayout.NORTH, t);
+		
+		Menu menu = new Menu(this);
+		this.setJMenuBar(menu);
+		
+		StatusBar statusBar = new StatusBar();
+		this.add(statusBar, BorderLayout.SOUTH);
 	}
 	
 	 
