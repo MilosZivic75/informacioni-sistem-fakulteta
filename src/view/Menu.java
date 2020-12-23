@@ -26,10 +26,12 @@ public class Menu extends JMenuBar {
 		file.setMnemonic(KeyEvent.VK_F);
 		
 		JMenuItem newEntity = new JMenuItem("New", new ImageIcon("images/sq_plus_icon&16.png"));
+		newEntity.setMnemonic(KeyEvent.VK_N);
 		newEntity.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
 		newEntity.setBackground(banana);
 		
 		JMenuItem close = new JMenuItem("Close", new ImageIcon("images/app_window_cross&16.png"));
+		close.setMnemonic(KeyEvent.VK_C);
 		close.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));
 		close.setBackground(banana);
 		
@@ -41,10 +43,12 @@ public class Menu extends JMenuBar {
 		edit.setMnemonic(KeyEvent.VK_E);
 		
 		JMenuItem editItem = new JMenuItem("Edit", new ImageIcon("images/pencil_icon&16.png"));
+		editItem.setMnemonic(KeyEvent.VK_I);
 		editItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK));
 		editItem.setBackground(banana);
 
 		JMenuItem delete = new JMenuItem("Delete", new ImageIcon("images/trash_icon&16.png"));
+		delete.setMnemonic(KeyEvent.VK_D);
 		delete.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
 		delete.setBackground(banana);
 		
@@ -56,6 +60,7 @@ public class Menu extends JMenuBar {
 		help.setMnemonic(KeyEvent.VK_H);
 		
 		JMenuItem helpItem = new JMenuItem("Help", new ImageIcon("images/doc_lines_icon&16.png"));
+		helpItem.setMnemonic(KeyEvent.VK_L);
 		helpItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H, ActionEvent.CTRL_MASK));
 		helpItem.setBackground(banana);
 		helpItem.addActionListener(new ActionListener() {
@@ -68,6 +73,7 @@ public class Menu extends JMenuBar {
 		});
 
 		JMenuItem about = new JMenuItem("About", new ImageIcon("images/info_icon&16.png"));
+		about.setMnemonic(KeyEvent.VK_A);
 		about.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.CTRL_MASK));
 		about.setBackground(banana);
 		about.addActionListener(new ActionListener() {
