@@ -40,7 +40,7 @@ public class StatusBar extends JPanel {
 			}
 		}).start();
 		
-		add(new JLabel("Studentska sluzba"), BorderLayout.WEST);
+		add(new JLabel("Studentska služba"), BorderLayout.WEST);
 		add(rightPan, BorderLayout.EAST);
 		
 	}

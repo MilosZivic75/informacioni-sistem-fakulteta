@@ -39,7 +39,7 @@ public class MainWindow extends JFrame{
 		Dimension screenSize = kit.getScreenSize();
 		int screenHeight = screenSize.height;
 		int screenWidth = screenSize.width;
-		setTitle("Studentska sluzba");
+		setTitle("Studentska služba");
 		setSize(3*screenWidth /4, 3*screenHeight /4);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
