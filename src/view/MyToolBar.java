@@ -1,16 +1,21 @@
 package view;
 
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
+
+import controller.StudentiController;
 
 
 
@@ -22,7 +27,7 @@ public class MyToolBar extends JToolBar{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public MyToolBar()  {
+	public MyToolBar(final JFrame parent)  {
 		// TODO Auto-generated constructor stub
 		
 		
@@ -43,6 +48,17 @@ public class MyToolBar extends JToolBar{
 		add(dodaj);
 	
 	    addSeparator();
+	    
+	    dodaj.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (MainWindow.getInstance().getTabIndex() == 0) {			
+					StudentiController.getInstance().dodajStudenta(parent);
+				}
+				
+			}
+		});
 	    
 	    
 	    //izmeni
@@ -104,7 +120,6 @@ public class MyToolBar extends JToolBar{
 		setFloatable(false);
 		
 		setBackground(juneau_spring);
-		
 		
 		
 		}
