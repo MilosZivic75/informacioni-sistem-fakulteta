@@ -3,7 +3,6 @@ package model;
 import java.util.ArrayList;
 import java.util.Date;
 
-import model.Student;
 import model.Student.Status;
 
 public class BazaStudenata {
