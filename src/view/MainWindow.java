@@ -26,6 +26,8 @@ public class MainWindow extends JFrame {
 	private static MainWindow instance = null;
 	private JTabbedPane tabbedPane;
 	private JTable tabelaStudenata;
+	private JTable tabelaProfesora;
+	private JTable tabelaPredmeta;
 
 	private MainWindow() {
 		tabbedPane = new JTabbedPane();
@@ -33,7 +35,6 @@ public class MainWindow extends JFrame {
 	}
 
 	private void initalise() {
-		// TODO Auto-generated constructor stub
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		Dimension screenSize = kit.getScreenSize();
 		int screenHeight = screenSize.height;
@@ -62,7 +63,6 @@ public class MainWindow extends JFrame {
 		this.add(tabbedPane, BorderLayout.CENTER);
 
 		JPanel studenti = new JPanel(new BorderLayout());
-		studenti.setBackground(banana);
 		tabbedPane.addTab("Studenti", studenti);
 
 		tabelaStudenata = new TabelaStudenata();
@@ -70,6 +70,22 @@ public class MainWindow extends JFrame {
 		JScrollPane scrollPaneStud = new JScrollPane(tabelaStudenata);
 		studenti.add(scrollPaneStud, BorderLayout.CENTER);
 
+		JPanel profesori = new JPanel(new BorderLayout());
+		tabbedPane.addTab("Profesori", profesori);
+
+		tabelaProfesora = new TabelaProfesora();
+
+		JScrollPane scrollPaneProf = new JScrollPane(tabelaProfesora);
+		profesori.add(scrollPaneProf, BorderLayout.CENTER);
+		
+		JPanel predmeti = new JPanel(new BorderLayout());
+		tabbedPane.addTab("Predmeti", predmeti);
+
+		tabelaPredmeta = new TabelaPredmeta();
+
+		JScrollPane scrollPanePred = new JScrollPane(tabelaPredmeta);
+		predmeti.add(scrollPanePred, BorderLayout.CENTER);
+		
 		azurirajPrikaz(null, -1);
 	}
 
@@ -85,8 +101,14 @@ public class MainWindow extends JFrame {
 	}
 	
 	public void azurirajPrikaz(String akcija, int vrednost) {
-		AbstractTableModelStudent model = (AbstractTableModelStudent) tabelaStudenata.getModel();
-		model.fireTableDataChanged();
+		AbstractTableModelStudent modelStud = (AbstractTableModelStudent) tabelaStudenata.getModel();
+		modelStud.fireTableDataChanged();
+		
+		AbstractTableModelProfesor modelProf = (AbstractTableModelProfesor) tabelaProfesora.getModel();
+		modelProf.fireTableDataChanged();
+		
+		AbstractTableModelPredmet modelPred = (AbstractTableModelPredmet) tabelaPredmeta.getModel();
+		modelPred.fireTableDataChanged();
 		validate();
 	}
 
