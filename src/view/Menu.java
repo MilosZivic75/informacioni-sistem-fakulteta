@@ -11,6 +11,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
+import controller.PredmetiController;
+import controller.ProfesoriController;
 import controller.StudentiController;
 
 public class Menu extends JMenuBar {
@@ -38,6 +40,10 @@ public class Menu extends JMenuBar {
 			public void actionPerformed(ActionEvent e) {
 				if (MainWindow.getInstance().getTabIndex() == 0) {
 					StudentiController.getInstance().dodajStudenta(parent);
+				} else if (MainWindow.getInstance().getTabIndex() == 1) {
+					ProfesoriController.getInstance().dodajProfesora(parent);
+				} else if (MainWindow.getInstance().getTabIndex() == 2) {
+					PredmetiController.getInstance().dodajPredmet(parent);
 				}
 				
 			}
