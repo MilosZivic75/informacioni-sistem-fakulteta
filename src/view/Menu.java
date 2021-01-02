@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
 import controller.PredmetiController;
@@ -45,7 +46,7 @@ public class Menu extends JMenuBar {
 				} else if (MainWindow.getInstance().getTabIndex() == 2) {
 					PredmetiController.getInstance().dodajPredmet(parent);
 				}
-				
+
 			}
 		});
 
@@ -58,6 +59,22 @@ public class Menu extends JMenuBar {
 		file.addSeparator();
 		file.add(close);
 
+		close.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JFrame frame = new JFrame();
+				String[] options = new String[2];
+				options[0] = new String("Da");
+				options[1] = new String("Ne");
+				int option = JOptionPane.showOptionDialog(frame.getContentPane(),
+						"Da li želite da napustite aplikaciju?", "Izlazak iz aplikacije", 0,
+						JOptionPane.QUESTION_MESSAGE, null, options, null);
+				if (option == JOptionPane.YES_OPTION)
+					parent.dispose();
+			}
+		});
+
 		JMenu edit = new JMenu("Edit");
 		edit.setMnemonic(KeyEvent.VK_E);
 
@@ -65,6 +82,20 @@ public class Menu extends JMenuBar {
 		editItem.setMnemonic(KeyEvent.VK_I);
 		editItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK));
 		editItem.setBackground(banana);
+
+		editItem.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (MainWindow.getInstance().getTabIndex() == 0) {
+					StudentiController.getInstance().izmeniStudenta(parent);
+				} else if (MainWindow.getInstance().getTabIndex() == 1) {
+					ProfesoriController.getInstance().izmeniProfesora(parent);
+				} else if (MainWindow.getInstance().getTabIndex() == 2) {
+					PredmetiController.getInstance().izmeniPredmet(parent);
+				}
+			}
+		});
 
 		JMenuItem delete = new JMenuItem("Delete", new ImageIcon("images/trash_icon&16.png"));
 		delete.setMnemonic(KeyEvent.VK_D);
@@ -75,6 +106,20 @@ public class Menu extends JMenuBar {
 		edit.addSeparator();
 		edit.add(delete);
 
+		delete.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (MainWindow.getInstance().getTabIndex() == 0) {
+					StudentiController.getInstance().obrisiStudenta(parent);
+				} else if (MainWindow.getInstance().getTabIndex() == 1) {
+					ProfesoriController.getInstance().obrisiProfesora(parent);
+				} else if (MainWindow.getInstance().getTabIndex() == 2) {
+					PredmetiController.getInstance().obrisiPredmet(parent);
+				}
+			}
+		});
+		
 		JMenu help = new JMenu("Help");
 		help.setMnemonic(KeyEvent.VK_H);
 

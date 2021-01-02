@@ -27,8 +27,6 @@ public class MyToolBar extends JToolBar {
 	private static final long serialVersionUID = 1L;
 
 	public MyToolBar(final JFrame parent) {
-		// TODO Auto-generated constructor stub
-
 		super(SwingConstants.HORIZONTAL);
 		// dodaj
 		Icon a = new ImageIcon("images/add_n.png");
@@ -75,6 +73,20 @@ public class MyToolBar extends JToolBar {
 
 		addSeparator();
 
+		izmeni.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (MainWindow.getInstance().getTabIndex() == 0) {
+					StudentiController.getInstance().izmeniStudenta(parent);
+				} else if (MainWindow.getInstance().getTabIndex() == 1) {
+					ProfesoriController.getInstance().izmeniProfesora(parent);
+				} else if (MainWindow.getInstance().getTabIndex() == 2) {
+					PredmetiController.getInstance().izmeniPredmet(parent);
+				}
+			}
+		});
+
 		// obrisi
 		Icon c = new ImageIcon("images/delete_n.png");
 
@@ -87,6 +99,20 @@ public class MyToolBar extends JToolBar {
 		obrisi.setBorderPainted(false);
 
 		add(obrisi);
+
+		obrisi.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (MainWindow.getInstance().getTabIndex() == 0) {
+					StudentiController.getInstance().obrisiStudenta(parent);
+				} else if (MainWindow.getInstance().getTabIndex() == 1) {
+					ProfesoriController.getInstance().obrisiProfesora(parent);
+				} else if (MainWindow.getInstance().getTabIndex() == 2) {
+					PredmetiController.getInstance().obrisiPredmet(parent);
+				}
+			}
+		});
 
 		java.awt.Color juneau_spring = new java.awt.Color(102, 181, 166, 250);
 		JPanel pan = new JPanel();
