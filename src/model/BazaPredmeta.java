@@ -23,8 +23,8 @@ public class BazaPredmeta {
 		this.kolone.add("Šifra predmeta");
 		this.kolone.add("Naziv predmeta");
 		this.kolone.add("Broj ESPB bodova");
-		this.kolone.add("Godina na kojoj se predmet izvodi");
-		this.kolone.add("Semestar u kome se predmet izvodi");
+		this.kolone.add("Godina izvođenja predmeta");
+		this.kolone.add("Semestar izvođenja predmeta");
 	}
 
 	public ArrayList<Predmet> getPredmeti() {
@@ -64,6 +64,19 @@ public class BazaPredmeta {
 	public void dodajPredmet(String sifra, String naziv, Semestar semestar, int godStudija, int espb) {
 		this.predmeti.add(
 				new Predmet(sifra, naziv, semestar, godStudija, espb));
+	}
+	
+	public void izmeniPredmet(String sifra, String naziv, Semestar semestar, int godStudija, int espb, int row) {	
+		this.predmeti.get(row).setSifra(sifra);
+		this.predmeti.get(row).setNaziv(naziv);
+		this.predmeti.get(row).setSemestar(semestar);
+		this.predmeti.get(row).setGodStudija(godStudija);
+		this.predmeti.get(row).setEspb(espb);
+		
+	}
+	
+	public void obrisiPredmet(int row) {
+		this.predmeti.remove(row);
 	}
 
 }
