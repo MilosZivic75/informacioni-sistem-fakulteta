@@ -66,4 +66,22 @@ public class BazaProfesora {
 		this.profesori.add(new Profesor(prezime, ime, datRodjenja, adresa, brTelefona, email, adresaKanc, brLicne,
 				titula, zvanje));
 	}
+
+	public void izmeniProfesora(String prezime, String ime, Date datRodjenja, String adresa, String brTelefona,
+			String email, String adresaKanc, String brLicne, Titule titula, Zvanja zvanje, int row) {
+		this.profesori.get(row).setPrezime(prezime);
+		this.profesori.get(row).setIme(ime);
+		this.profesori.get(row).setDatRodjenja(datRodjenja);
+		this.profesori.get(row).setAdresa(adresa);
+		this.profesori.get(row).setBrTelefona(brTelefona);
+		this.profesori.get(row).setEmail(email);
+		this.profesori.get(row).setAdresaKanc(adresaKanc);
+		this.profesori.get(row).setBrLicne(brLicne);
+		this.profesori.get(row).setTitula(titula);
+		this.profesori.get(row).setZvanje(zvanje);
+	}
+	
+	public void obrisiProfesora(int row) {
+		this.profesori.remove(row);
+	}
 }
