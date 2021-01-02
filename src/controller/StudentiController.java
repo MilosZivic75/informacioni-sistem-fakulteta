@@ -1,8 +1,14 @@
 package controller;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
+import model.BazaPredmeta;
+import model.BazaStudenata;
+import model.Predmet;
+import model.Student;
 import view.DodajStudenta;
+import view.IzmeniStudenta;
 import view.MainWindow;
 
 public class StudentiController {
@@ -21,7 +27,51 @@ public class StudentiController {
 	public void dodajStudenta(JFrame parent) {
 		DodajStudenta dodaj = new DodajStudenta(parent, "Dodavanje studenta", true);
 		dodaj.setVisible(true);
-		
+
 		MainWindow.getInstance().azurirajPrikaz("DODAT", -1);
+	}
+
+	public void izmeniStudenta(JFrame parent) {
+		int row = MainWindow.getInstance().getStudentRow();
+		if (row != -1) {
+			IzmeniStudenta izmeni = new IzmeniStudenta(parent, "Izmena studenta", true, row);
+			izmeni.setVisible(true);
+
+			MainWindow.getInstance().azurirajPrikaz("IZMENJEN", -1);
+		} else {
+			JOptionPane.showMessageDialog(parent, "Morate selektovati studenta");
+		}
+	}
+
+	public void obrisiStudenta(JFrame parent) {
+		int row = MainWindow.getInstance().getStudentRow();
+		if (row != -1) {
+			JFrame frame = new JFrame();
+			String[] options = new String[2];
+			options[0] = new String("Da");
+			options[1] = new String("Ne");
+			int option = JOptionPane.showOptionDialog(frame.getContentPane(),
+					"Da li ste sigurni da želite da obrišete studenta?", "Brisanje studenta", 0,
+					JOptionPane.QUESTION_MESSAGE, null, options, null);
+			if (option == JOptionPane.YES_OPTION) {
+				for (Predmet p : BazaPredmeta.getInstance().getPredmeti()) {
+					for (Student s : p.getNisuPolozili()) {
+						if (s.getIndeks().equals(BazaStudenata.getInstance().getStudenti().get(row).getIndeks()))
+							p.getNisuPolozili().remove(s);
+					}
+
+					for (Student s : p.getSuPolozili()) {
+						if (s.getIndeks().equals(BazaStudenata.getInstance().getStudenti().get(row).getIndeks()))
+							p.getSuPolozili().remove(s);
+					}
+				}
+
+				BazaStudenata.getInstance().obrisiStudenta(row);
+				MainWindow.getInstance().azurirajPrikaz("OBRISAN", -1);
+			}
+
+		} else {
+			JOptionPane.showMessageDialog(parent, "Morate selektovati studenta");
+		}
 	}
 }

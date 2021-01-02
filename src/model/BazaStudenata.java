@@ -70,5 +70,23 @@ public class BazaStudenata {
 		this.studenti.add(
 				new Student(prezime, ime, datRodjenja, adresa, brTelefona, email, indeks, godUpisa, trenGod, status));
 	}
+	
+	public void izmeniStudenta(String prezime, String ime, Date datRodjenja, String adresa, String brTelefona,
+			String email, String indeks, int godUpisa, int trenGod, Status status, int row) {
+		this.studenti.get(row).setPrezime(prezime);
+		this.studenti.get(row).setIme(ime);
+		this.studenti.get(row).setDatRodjenja(datRodjenja);
+		this.studenti.get(row).setAdresa(adresa);
+		this.studenti.get(row).setBrTelefona(brTelefona);
+		this.studenti.get(row).setEmail(email);
+		this.studenti.get(row).setIndeks(indeks);
+		this.studenti.get(row).setGodUpisa(godUpisa);
+		this.studenti.get(row).setTrenGod(trenGod);
+		this.studenti.get(row).setStatus(status);
+	}
+	
+	public void obrisiStudenta(int row) {
+		this.studenti.remove(row);
+	}
 
 }
