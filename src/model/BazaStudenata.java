@@ -59,7 +59,7 @@ public class BazaStudenata {
 		case 4:
 			return student.getStatus().toString();
 		case 5:
-			return Double.toString(student.getProsOcena());
+			return String.format("%.2f", student.getProsOcena());
 		default:
 			return null;
 		}
