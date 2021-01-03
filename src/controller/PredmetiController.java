@@ -50,11 +50,10 @@ public class PredmetiController {
 	public void obrisiPredmet(JFrame parent) {
 		int row = MainWindow.getInstance().getPredmetRow();
 		if (row != -1) {
-			JFrame frame = new JFrame();
 			String[] options = new String[2];
 			options[0] = new String("Da");
 			options[1] = new String("Ne");
-			int option = JOptionPane.showOptionDialog(frame.getContentPane(),
+			int option = JOptionPane.showOptionDialog(parent,
 					"Da li ste sigurni da želite da obrišete predmet?", "Brisanje predmeta", 0,
 					JOptionPane.QUESTION_MESSAGE, null, options, null);
 			if (option == JOptionPane.YES_OPTION) {
