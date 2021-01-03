@@ -24,6 +24,9 @@ public class Predmet {
 		this.semestar = semestar;
 		this.godStudija = godStudija;
 		this.espb = espb;
+		
+		this.suPolozili = new ArrayList<Student>();
+		this.nisuPolozili = new ArrayList<Student>();
 	}
 
 	public String getSifra() {

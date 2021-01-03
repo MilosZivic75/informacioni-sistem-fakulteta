@@ -36,6 +36,9 @@ public class Student {
 		this.godUpisa = godUpisa;
 		this.trenGod = trenGod;
 		this.status = status;
+		
+		this.polIspiti = new ArrayList<Ocena>();
+		this.nepolIspiti = new ArrayList<Predmet>();
 	}
 
 	public String getPrezime() {

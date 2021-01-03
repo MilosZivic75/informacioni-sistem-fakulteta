@@ -37,6 +37,8 @@ public class Profesor {
 		this.brLicne = brLicne;
 		this.titula = titula;
 		this.zvanje = zvanje;
+		
+		this.predmeti = new ArrayList<Predmet>();
 	}
 
 	public String getPrezime() {
