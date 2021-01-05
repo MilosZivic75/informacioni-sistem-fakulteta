@@ -1,5 +1,8 @@
 package controller;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -27,14 +30,14 @@ public class PredmetiController {
 	private PredmetiController() {
 	}
 
-	public void dodajPredmet(JFrame parent) {
+	public void dodajPredmet(JFrame parent) throws FileNotFoundException, ClassNotFoundException, IOException {
 		DodajPredmet dodaj = new DodajPredmet(parent, "Dodavanje predmeta", true);
 		dodaj.setVisible(true);
 
 		MainWindow.getInstance().azurirajPrikaz("DODAT", -1);
 	}
 
-	public void izmeniPredmet(JFrame parent) {
+	public void izmeniPredmet(JFrame parent) throws FileNotFoundException, ClassNotFoundException, IOException {
 		int row = MainWindow.getInstance().getPredmetRow();
 		if (row != -1) {
 			IzmeniPredmet izmeni = new IzmeniPredmet(parent, "Izmena predmeta", true, row);
@@ -47,7 +50,7 @@ public class PredmetiController {
 
 	}
 
-	public void obrisiPredmet(JFrame parent) {
+	public void obrisiPredmet(JFrame parent) throws FileNotFoundException, ClassNotFoundException, IOException {
 		int row = MainWindow.getInstance().getPredmetRow();
 		if (row != -1) {
 			String[] options = new String[2];

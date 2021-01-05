@@ -51,6 +51,10 @@ public class BazaStudenata {
 		return this.studenti;
 	}
 
+	public void setStudenti(ArrayList<Student> studenti) {
+		this.studenti = studenti;
+	}
+
 	public int getColumnCount() {
 		return 6;
 	}

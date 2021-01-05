@@ -1,5 +1,8 @@
 package controller;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -23,14 +26,14 @@ public class ProfesoriController {
 	private ProfesoriController() {
 	}
 
-	public void dodajProfesora(JFrame parent) {
+	public void dodajProfesora(JFrame parent) throws FileNotFoundException, ClassNotFoundException, IOException {
 		DodajProfesora dodaj = new DodajProfesora(parent, "Dodavanje profesora", true);
 		dodaj.setVisible(true);
 
 		MainWindow.getInstance().azurirajPrikaz("DODAT", -1);
 	}
 
-	public void izmeniProfesora(JFrame parent) {
+	public void izmeniProfesora(JFrame parent) throws FileNotFoundException, ClassNotFoundException, IOException {
 		int row = MainWindow.getInstance().getProfesorRow();
 		if (row != -1) {
 			IzmeniProfesora izmeni = new IzmeniProfesora(parent, "Izmena profesora", true, row);
@@ -42,7 +45,7 @@ public class ProfesoriController {
 		}
 	}
 
-	public void obrisiProfesora(JFrame parent) {
+	public void obrisiProfesora(JFrame parent) throws FileNotFoundException, ClassNotFoundException, IOException {
 		int row = MainWindow.getInstance().getProfesorRow();
 		if (row != -1) {
 			String[] options = new String[2];

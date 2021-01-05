@@ -5,6 +5,7 @@ import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -250,7 +251,12 @@ class ButtonColumnStudenti implements TableCellRenderer {
 				
 
 				BazaStudenata.getInstance().setFiltriraniStudenti(new ArrayList<Student>());
-				MainWindow.getInstance().azurirajPrikaz("SORT", -1);
+				try {
+					MainWindow.getInstance().azurirajPrikaz("SORT", -1);
+				} catch (ClassNotFoundException | IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		}
 

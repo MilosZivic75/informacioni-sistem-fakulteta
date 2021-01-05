@@ -3,6 +3,7 @@ package view;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.Box;
@@ -50,12 +51,17 @@ public class MyToolBar extends JToolBar {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (MainWindow.getInstance().getTabIndex() == 0) {
-					StudentiController.getInstance().dodajStudenta(parent);
-				} else if (MainWindow.getInstance().getTabIndex() == 1) {
-					ProfesoriController.getInstance().dodajProfesora(parent);
-				} else if (MainWindow.getInstance().getTabIndex() == 2) {
-					PredmetiController.getInstance().dodajPredmet(parent);
+				try {
+					if (MainWindow.getInstance().getTabIndex() == 0) {
+						StudentiController.getInstance().dodajStudenta(parent);
+					} else if (MainWindow.getInstance().getTabIndex() == 1) {
+						ProfesoriController.getInstance().dodajProfesora(parent);
+					} else if (MainWindow.getInstance().getTabIndex() == 2) {
+						PredmetiController.getInstance().dodajPredmet(parent);
+					}
+				} catch (ClassNotFoundException | IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
 
 			}
@@ -80,12 +86,17 @@ public class MyToolBar extends JToolBar {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (MainWindow.getInstance().getTabIndex() == 0) {
-					StudentiController.getInstance().izmeniStudenta(parent);
-				} else if (MainWindow.getInstance().getTabIndex() == 1) {
-					ProfesoriController.getInstance().izmeniProfesora(parent);
-				} else if (MainWindow.getInstance().getTabIndex() == 2) {
-					PredmetiController.getInstance().izmeniPredmet(parent);
+				try {
+					if (MainWindow.getInstance().getTabIndex() == 0) {
+						StudentiController.getInstance().izmeniStudenta(parent);
+					} else if (MainWindow.getInstance().getTabIndex() == 1) {
+						ProfesoriController.getInstance().izmeniProfesora(parent);
+					} else if (MainWindow.getInstance().getTabIndex() == 2) {
+						PredmetiController.getInstance().izmeniPredmet(parent);
+					}
+				} catch (ClassNotFoundException | IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
 			}
 		});
@@ -107,12 +118,17 @@ public class MyToolBar extends JToolBar {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (MainWindow.getInstance().getTabIndex() == 0) {
-					StudentiController.getInstance().obrisiStudenta(parent);
-				} else if (MainWindow.getInstance().getTabIndex() == 1) {
-					ProfesoriController.getInstance().obrisiProfesora(parent);
-				} else if (MainWindow.getInstance().getTabIndex() == 2) {
-					PredmetiController.getInstance().obrisiPredmet(parent);
+				try {
+					if (MainWindow.getInstance().getTabIndex() == 0) {
+						StudentiController.getInstance().obrisiStudenta(parent);
+					} else if (MainWindow.getInstance().getTabIndex() == 1) {
+						ProfesoriController.getInstance().obrisiProfesora(parent);
+					} else if (MainWindow.getInstance().getTabIndex() == 2) {
+						PredmetiController.getInstance().obrisiPredmet(parent);
+					}
+				} catch (ClassNotFoundException | IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
 			}
 		});
@@ -140,7 +156,12 @@ public class MyToolBar extends JToolBar {
 			public void actionPerformed(ActionEvent e) {
 				BazaStudenata.getInstance().setFilter(txt.getText().trim());
 				BazaStudenata.getInstance().setFiltriraniStudenti(new ArrayList<Student>());
-				MainWindow.getInstance().azurirajPrikaz("FILTER", -1);
+				try {
+					MainWindow.getInstance().azurirajPrikaz("FILTER", -1);
+				} catch (ClassNotFoundException | IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 
 			}
 		});

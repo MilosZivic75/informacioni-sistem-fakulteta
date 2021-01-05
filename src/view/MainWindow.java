@@ -14,9 +14,22 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.table.TableColumn;
 
+import model.BazaStudenata;
+import model.Student;
+
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 
 public class MainWindow extends JFrame {
 
@@ -31,12 +44,13 @@ public class MainWindow extends JFrame {
 	private JTable tabelaProfesora;
 	private JTable tabelaPredmeta;
 
-	private MainWindow() {
+	private MainWindow() throws FileNotFoundException, IOException, ClassNotFoundException {
 		tabbedPane = new JTabbedPane();
 		initialise();
 	}
 
-	private void initialise() {
+	@SuppressWarnings("unchecked")
+	private void initialise() throws FileNotFoundException, IOException, ClassNotFoundException {
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		Dimension screenSize = kit.getScreenSize();
 		int screenHeight = screenSize.height;
@@ -44,6 +58,19 @@ public class MainWindow extends JFrame {
 		setTitle("Studentska služba");
 		setSize(3 * screenWidth / 4, 3 * screenHeight / 4);
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+
+		try {
+			File f = new File("studentstream.txt");
+			ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream(f)));
+			try {
+				BazaStudenata.getInstance().setStudenti((ArrayList<Student>) ois.readObject());
+			} finally {
+				ois.close();
+			}
+		} catch (Exception e) {
+
+		}
+
 		this.addWindowListener(new WindowListener() {
 
 			@Override
@@ -75,11 +102,34 @@ public class MainWindow extends JFrame {
 				String[] options = new String[2];
 				options[0] = new String("Da");
 				options[1] = new String("Ne");
-				int option = JOptionPane.showOptionDialog(instance,
-						"Da li želite da napustite aplikaciju?", "Izlazak iz aplikacije", 0,
-						JOptionPane.QUESTION_MESSAGE, null, options, null);
-				if (option == JOptionPane.YES_OPTION)
+				int option = JOptionPane.showOptionDialog(instance, "Da li želite da napustite aplikaciju?",
+						"Izlazak iz aplikacije", 0, JOptionPane.QUESTION_MESSAGE, null, options, null);
+				if (option == JOptionPane.YES_OPTION) {
+					File f = new File("studentstream.txt");
+					ObjectOutputStream oos;
+					try {
+						oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(f)));
+						try {
+							oos.writeObject(BazaStudenata.getInstance().getStudenti());
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} finally {
+							try {
+								oos.close();
+							} catch (IOException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+						}
+					} catch (IOException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
+
 					instance.dispose();
+				}
+
 			}
 
 			@Override
@@ -116,23 +166,22 @@ public class MainWindow extends JFrame {
 
 		JPanel studenti = new JPanel(new BorderLayout());
 		tabbedPane.addTab("Studenti", studenti);
-		
+
 		Icon icon = new ImageIcon("images/arrow_two_head_2_icon&16.png");
 
 		tabelaStudenata = new TabelaStudenata();
-	    TableColumn col = tabelaStudenata.getColumnModel().getColumn(0);
-	    col.setHeaderRenderer(new ButtonColumnStudenti( new JButton("Indeks", icon)));
-	    col = tabelaStudenata.getColumnModel().getColumn(1);
-	    col.setHeaderRenderer(new ButtonColumnStudenti( new JButton("Ime", icon)));
-	    col = tabelaStudenata.getColumnModel().getColumn(2);
-	    col.setHeaderRenderer(new ButtonColumnStudenti( new JButton("Prezime", icon)));
-	    col = tabelaStudenata.getColumnModel().getColumn(3);
-	    col.setHeaderRenderer(new ButtonColumnStudenti( new JButton("Godina studija", icon)));
-	    col = tabelaStudenata.getColumnModel().getColumn(4);
-	    col.setHeaderRenderer(new ButtonColumnStudenti( new JButton("Status", icon)));
-	    col = tabelaStudenata.getColumnModel().getColumn(5);
-	    col.setHeaderRenderer(new ButtonColumnStudenti( new JButton("Prosek", icon)));
-	    
+		TableColumn col = tabelaStudenata.getColumnModel().getColumn(0);
+		col.setHeaderRenderer(new ButtonColumnStudenti(new JButton("Indeks", icon)));
+		col = tabelaStudenata.getColumnModel().getColumn(1);
+		col.setHeaderRenderer(new ButtonColumnStudenti(new JButton("Ime", icon)));
+		col = tabelaStudenata.getColumnModel().getColumn(2);
+		col.setHeaderRenderer(new ButtonColumnStudenti(new JButton("Prezime", icon)));
+		col = tabelaStudenata.getColumnModel().getColumn(3);
+		col.setHeaderRenderer(new ButtonColumnStudenti(new JButton("Godina studija", icon)));
+		col = tabelaStudenata.getColumnModel().getColumn(4);
+		col.setHeaderRenderer(new ButtonColumnStudenti(new JButton("Status", icon)));
+		col = tabelaStudenata.getColumnModel().getColumn(5);
+		col.setHeaderRenderer(new ButtonColumnStudenti(new JButton("Prosek", icon)));
 
 		JScrollPane scrollPaneStud = new JScrollPane(tabelaStudenata);
 		studenti.add(scrollPaneStud, BorderLayout.CENTER);
@@ -152,11 +201,11 @@ public class MainWindow extends JFrame {
 
 		JScrollPane scrollPanePred = new JScrollPane(tabelaPredmeta);
 		predmeti.add(scrollPanePred, BorderLayout.CENTER);
-		
+
 		azurirajPrikaz(null, -1);
 	}
 
-	public static MainWindow getInstance() {
+	public static MainWindow getInstance() throws FileNotFoundException, ClassNotFoundException, IOException {
 		if (instance == null) {
 			instance = new MainWindow();
 		}

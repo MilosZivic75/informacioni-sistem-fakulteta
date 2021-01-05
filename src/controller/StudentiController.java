@@ -1,5 +1,7 @@
 package controller;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -26,7 +28,7 @@ public class StudentiController {
 	private StudentiController() {
 	}
 
-	public void dodajStudenta(JFrame parent) {
+	public void dodajStudenta(JFrame parent) throws FileNotFoundException, ClassNotFoundException, IOException {
 		DodajStudenta dodaj = new DodajStudenta(parent, "Dodavanje studenta", true);
 		dodaj.setVisible(true);
 		BazaStudenata.getInstance().setFiltriraniStudenti(new ArrayList<Student>());
@@ -34,7 +36,7 @@ public class StudentiController {
 		MainWindow.getInstance().azurirajPrikaz("DODAT", -1);
 	}
 
-	public void izmeniStudenta(JFrame parent) {
+	public void izmeniStudenta(JFrame parent) throws FileNotFoundException, ClassNotFoundException, IOException {
 		int row = MainWindow.getInstance().getStudentRow();
 		if (row != -1) {
 			IzmeniStudenta izmeni = new IzmeniStudenta(parent, "Izmena studenta", true, row);
@@ -47,7 +49,7 @@ public class StudentiController {
 		}
 	}
 
-	public void obrisiStudenta(JFrame parent) {
+	public void obrisiStudenta(JFrame parent) throws FileNotFoundException, ClassNotFoundException, IOException {
 		int row = MainWindow.getInstance().getStudentRow();
 		if (row != -1) {
 			String[] options = new String[2];

@@ -3,6 +3,7 @@ package view;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -39,12 +40,17 @@ public class Menu extends JMenuBar {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (MainWindow.getInstance().getTabIndex() == 0) {
-					StudentiController.getInstance().dodajStudenta(parent);
-				} else if (MainWindow.getInstance().getTabIndex() == 1) {
-					ProfesoriController.getInstance().dodajProfesora(parent);
-				} else if (MainWindow.getInstance().getTabIndex() == 2) {
-					PredmetiController.getInstance().dodajPredmet(parent);
+				try {
+					if (MainWindow.getInstance().getTabIndex() == 0) {
+						StudentiController.getInstance().dodajStudenta(parent);
+					} else if (MainWindow.getInstance().getTabIndex() == 1) {
+						ProfesoriController.getInstance().dodajProfesora(parent);
+					} else if (MainWindow.getInstance().getTabIndex() == 2) {
+						PredmetiController.getInstance().dodajPredmet(parent);
+					}
+				} catch (ClassNotFoundException | IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
 
 			}
@@ -69,8 +75,11 @@ public class Menu extends JMenuBar {
 				int option = JOptionPane.showOptionDialog(parent,
 						"Da li želite da napustite aplikaciju?", "Izlazak iz aplikacije", 0,
 						JOptionPane.QUESTION_MESSAGE, null, options, null);
-				if (option == JOptionPane.YES_OPTION)
+				if (option == JOptionPane.YES_OPTION) {
+					
 					parent.dispose();
+				}
+					
 			}
 		});
 
@@ -86,12 +95,17 @@ public class Menu extends JMenuBar {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (MainWindow.getInstance().getTabIndex() == 0) {
-					StudentiController.getInstance().izmeniStudenta(parent);
-				} else if (MainWindow.getInstance().getTabIndex() == 1) {
-					ProfesoriController.getInstance().izmeniProfesora(parent);
-				} else if (MainWindow.getInstance().getTabIndex() == 2) {
-					PredmetiController.getInstance().izmeniPredmet(parent);
+				try {
+					if (MainWindow.getInstance().getTabIndex() == 0) {
+						StudentiController.getInstance().izmeniStudenta(parent);
+					} else if (MainWindow.getInstance().getTabIndex() == 1) {
+						ProfesoriController.getInstance().izmeniProfesora(parent);
+					} else if (MainWindow.getInstance().getTabIndex() == 2) {
+						PredmetiController.getInstance().izmeniPredmet(parent);
+					}
+				} catch (ClassNotFoundException | IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
 			}
 		});
@@ -109,12 +123,17 @@ public class Menu extends JMenuBar {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (MainWindow.getInstance().getTabIndex() == 0) {
-					StudentiController.getInstance().obrisiStudenta(parent);
-				} else if (MainWindow.getInstance().getTabIndex() == 1) {
-					ProfesoriController.getInstance().obrisiProfesora(parent);
-				} else if (MainWindow.getInstance().getTabIndex() == 2) {
-					PredmetiController.getInstance().obrisiPredmet(parent);
+				try {
+					if (MainWindow.getInstance().getTabIndex() == 0) {
+						StudentiController.getInstance().obrisiStudenta(parent);
+					} else if (MainWindow.getInstance().getTabIndex() == 1) {
+						ProfesoriController.getInstance().obrisiProfesora(parent);
+					} else if (MainWindow.getInstance().getTabIndex() == 2) {
+						PredmetiController.getInstance().obrisiPredmet(parent);
+					}
+				} catch (ClassNotFoundException | IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
 			}
 		});
