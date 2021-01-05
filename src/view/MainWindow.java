@@ -3,12 +3,16 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
+import javax.swing.table.TableColumn;
 
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
@@ -112,8 +116,23 @@ public class MainWindow extends JFrame {
 
 		JPanel studenti = new JPanel(new BorderLayout());
 		tabbedPane.addTab("Studenti", studenti);
+		
+		Icon icon = new ImageIcon("images/arrow_two_head_2_icon&16.png");
 
 		tabelaStudenata = new TabelaStudenata();
+	    TableColumn col = tabelaStudenata.getColumnModel().getColumn(0);
+	    col.setHeaderRenderer(new ButtonColumnStudenti( new JButton("Indeks", icon)));
+	    col = tabelaStudenata.getColumnModel().getColumn(1);
+	    col.setHeaderRenderer(new ButtonColumnStudenti( new JButton("Ime", icon)));
+	    col = tabelaStudenata.getColumnModel().getColumn(2);
+	    col.setHeaderRenderer(new ButtonColumnStudenti( new JButton("Prezime", icon)));
+	    col = tabelaStudenata.getColumnModel().getColumn(3);
+	    col.setHeaderRenderer(new ButtonColumnStudenti( new JButton("Godina studija", icon)));
+	    col = tabelaStudenata.getColumnModel().getColumn(4);
+	    col.setHeaderRenderer(new ButtonColumnStudenti( new JButton("Status", icon)));
+	    col = tabelaStudenata.getColumnModel().getColumn(5);
+	    col.setHeaderRenderer(new ButtonColumnStudenti( new JButton("Prosek", icon)));
+	    
 
 		JScrollPane scrollPaneStud = new JScrollPane(tabelaStudenata);
 		studenti.add(scrollPaneStud, BorderLayout.CENTER);
@@ -133,7 +152,7 @@ public class MainWindow extends JFrame {
 
 		JScrollPane scrollPanePred = new JScrollPane(tabelaPredmeta);
 		predmeti.add(scrollPanePred, BorderLayout.CENTER);
-
+		
 		azurirajPrikaz(null, -1);
 	}
 
