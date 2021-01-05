@@ -65,7 +65,7 @@ public class IzmeniStudenta extends JDialog {
 		tabbedPane.addTab("Položeni", polozeni);
 		tabbedPane.addTab("Nepoloženi", nepolozeni);
 
-		student = BazaStudenata.getInstance().getStudenti().get(row);
+		student = BazaStudenata.getInstance().getFiltriraniStudenti().get(row);
 
 		JButton potvrdi = new JButton("Potvrdi");
 

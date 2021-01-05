@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.ArrayList;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -27,6 +29,7 @@ public class StudentiController {
 	public void dodajStudenta(JFrame parent) {
 		DodajStudenta dodaj = new DodajStudenta(parent, "Dodavanje studenta", true);
 		dodaj.setVisible(true);
+		BazaStudenata.getInstance().setFiltriraniStudenti(new ArrayList<Student>());
 
 		MainWindow.getInstance().azurirajPrikaz("DODAT", -1);
 	}
@@ -36,6 +39,7 @@ public class StudentiController {
 		if (row != -1) {
 			IzmeniStudenta izmeni = new IzmeniStudenta(parent, "Izmena studenta", true, row);
 			izmeni.setVisible(true);
+			BazaStudenata.getInstance().setFiltriraniStudenti(new ArrayList<Student>());
 
 			MainWindow.getInstance().azurirajPrikaz("IZMENJEN", -1);
 		} else {
@@ -66,6 +70,7 @@ public class StudentiController {
 				}
 
 				BazaStudenata.getInstance().obrisiStudenta(row);
+				BazaStudenata.getInstance().setFiltriraniStudenti(new ArrayList<Student>());
 				MainWindow.getInstance().azurirajPrikaz("OBRISAN", -1);
 			}
 

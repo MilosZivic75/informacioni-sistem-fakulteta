@@ -3,6 +3,7 @@ package view;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -18,6 +19,8 @@ import javax.swing.SwingConstants;
 import controller.PredmetiController;
 import controller.ProfesoriController;
 import controller.StudentiController;
+import model.BazaStudenata;
+import model.Student;
 
 public class MyToolBar extends JToolBar {
 
@@ -122,6 +125,7 @@ public class MyToolBar extends JToolBar {
 		pan.add(Box.createGlue());
 		Dimension dim = new Dimension(5000, 26);
 		JTextField txt = new JTextField();
+
 		pan.add(txt);
 		txt.setMaximumSize(dim);
 		txt.setMinimumSize(dim);
@@ -129,6 +133,18 @@ public class MyToolBar extends JToolBar {
 
 		Icon q = new ImageIcon("images/search_n.png");
 		JButton pronadji = new JButton(q);
+
+		pronadji.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				BazaStudenata.getInstance().setFilter(txt.getText().trim());
+				BazaStudenata.getInstance().setFiltriraniStudenti(new ArrayList<Student>());
+				MainWindow.getInstance().azurirajPrikaz("FILTER", -1);
+
+			}
+		});
+
 		pronadji.setToolTipText("pronadji oznaceni entitet u sistemu");
 		pronadji.setContentAreaFilled(false);
 		pronadji.setFocusPainted(false);
