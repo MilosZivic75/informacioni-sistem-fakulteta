@@ -26,7 +26,7 @@ class ButtonColumnStudenti implements TableCellRenderer {
 	private MouseEventReposter reporter = null;
 	private JComponent editor;
 
-	ButtonColumnStudenti(JComponent editor) {
+	public ButtonColumnStudenti(JComponent editor) {
 		this.editor = editor;
 		this.editor.setBorder(UIManager.getBorder("TableHeader.cellBorder"));
 	}

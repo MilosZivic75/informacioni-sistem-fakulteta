@@ -17,13 +17,13 @@ public class BazaStudenata {
 	private ArrayList<Student> studenti;
 	private ArrayList<Student> filtriraniStudenti;
 	private ArrayList<String> kolone;
-	String filter;
-	boolean indeksAsc;
-	boolean imeAsc;
-	boolean prezimeAsc;
-	boolean godStudAsc;
-	boolean statusAsc;
-	boolean prosekAsc;
+	private String filter;
+	private boolean indeksAsc;
+	private boolean imeAsc;
+	private boolean prezimeAsc;
+	private boolean godStudAsc;
+	private boolean statusAsc;
+	private boolean prosekAsc;
 
 	private BazaStudenata() {
 		this.studenti = new ArrayList<Student>();
