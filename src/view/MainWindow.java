@@ -198,6 +198,16 @@ public class MainWindow extends JFrame {
 		tabbedPane.addTab("Predmeti", predmeti);
 
 		tabelaPredmeta = new TabelaPredmeta();
+		col = tabelaPredmeta.getColumnModel().getColumn(0);
+	    col.setHeaderRenderer(new ButtonColumnPredmeti( new JButton("Šifra predmeta", icon)));
+	    col = tabelaPredmeta.getColumnModel().getColumn(1);
+	    col.setHeaderRenderer(new ButtonColumnPredmeti( new JButton("Naziv predmeta", icon)));
+	    col = tabelaPredmeta.getColumnModel().getColumn(2);
+	    col.setHeaderRenderer(new ButtonColumnPredmeti( new JButton("Broj ESPB bodova", icon)));
+	    col = tabelaPredmeta.getColumnModel().getColumn(3);
+	    col.setHeaderRenderer(new ButtonColumnPredmeti( new JButton("Godina izvođenja predmeta", icon)));
+	    col = tabelaPredmeta.getColumnModel().getColumn(4);
+	    col.setHeaderRenderer(new ButtonColumnPredmeti( new JButton("Semestar izvođenja predmeta", icon)));
 
 		JScrollPane scrollPanePred = new JScrollPane(tabelaPredmeta);
 		predmeti.add(scrollPanePred, BorderLayout.CENTER);
