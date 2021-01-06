@@ -49,7 +49,7 @@ public class IzmeniPredmet extends JDialog {
 		tabbedPane.addTab("Studenti položili", suPolozili);
 		tabbedPane.addTab("Studenti nisu položili", nisuPolozili);
 		
-		Predmet predmet = BazaPredmeta.getInstance().getPredmeti().get(row);
+		Predmet predmet = BazaPredmeta.getInstance().getFiltriraniPredmeti().get(row);
 		
 		JButton potvrdi = new JButton("Potvrdi");
 

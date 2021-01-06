@@ -20,7 +20,9 @@ import javax.swing.SwingConstants;
 import controller.PredmetiController;
 import controller.ProfesoriController;
 import controller.StudentiController;
+import model.BazaPredmeta;
 import model.BazaStudenata;
+import model.Predmet;
 import model.Student;
 
 public class MyToolBar extends JToolBar {
@@ -154,15 +156,20 @@ public class MyToolBar extends JToolBar {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				BazaStudenata.getInstance().setFilter(txt.getText().trim());
-				BazaStudenata.getInstance().setFiltriraniStudenti(new ArrayList<Student>());
 				try {
-					MainWindow.getInstance().azurirajPrikaz("FILTER", -1);
-				} catch (ClassNotFoundException | IOException e1) {
+					if (MainWindow.getInstance().getTabIndex() == 0) {
+						BazaStudenata.getInstance().setFilter(txt.getText().trim());
+						BazaStudenata.getInstance().setFiltriraniStudenti(new ArrayList<Student>());
+						MainWindow.getInstance().azurirajPrikaz("FILTER", -1);
+					} else if (MainWindow.getInstance().getTabIndex() == 2) {
+						BazaPredmeta.getInstance().setFilter(txt.getText().trim());
+						BazaPredmeta.getInstance().setFiltriraniPredmeti(new ArrayList<Predmet>());
+						MainWindow.getInstance().azurirajPrikaz("FILTER", -1);
+					}
+				} catch (ClassNotFoundException | IOException e2) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					e2.printStackTrace();
 				}
-
 			}
 		});
 
