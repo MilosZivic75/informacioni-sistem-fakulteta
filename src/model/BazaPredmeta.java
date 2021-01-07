@@ -47,6 +47,10 @@ public class BazaPredmeta {
 		return this.predmeti;
 	}
 
+	public void setPredmeti(ArrayList<Predmet> predmeti) {
+		this.predmeti = predmeti;
+	}
+
 	public int getColumnCount() {
 		return 5;
 	}

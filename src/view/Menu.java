@@ -3,7 +3,11 @@ package view;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -16,6 +20,8 @@ import javax.swing.KeyStroke;
 import controller.PredmetiController;
 import controller.ProfesoriController;
 import controller.StudentiController;
+import model.BazaPredmeta;
+import model.BazaStudenata;
 
 public class Menu extends JMenuBar {
 
@@ -76,6 +82,48 @@ public class Menu extends JMenuBar {
 						"Da li želite da napustite aplikaciju?", "Izlazak iz aplikacije", 0,
 						JOptionPane.QUESTION_MESSAGE, null, options, null);
 				if (option == JOptionPane.YES_OPTION) {
+					File fs = new File("studentstream.txt");
+					File fp = new File("predmetstream.txt"); 
+					ObjectOutputStream oos;
+					try {
+						oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(fs)));
+						try {
+							oos.writeObject(BazaStudenata.getInstance().getStudenti());
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} finally {
+							try {
+								oos.close();
+							} catch (IOException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+						}
+					} catch (IOException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
+					
+					try {
+						oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(fp)));
+						try {
+							oos.writeObject(BazaPredmeta.getInstance().getPredmeti());
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} finally {
+							try {
+								oos.close();
+							} catch (IOException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+						}
+					} catch (IOException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
 					
 					parent.dispose();
 				}

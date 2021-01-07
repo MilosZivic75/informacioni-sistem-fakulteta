@@ -14,7 +14,9 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.table.TableColumn;
 
+import model.BazaPredmeta;
 import model.BazaStudenata;
+import model.Predmet;
 import model.Student;
 
 import java.awt.Toolkit;
@@ -70,6 +72,18 @@ public class MainWindow extends JFrame {
 		} catch (Exception e) {
 
 		}
+		
+		try {
+			File f = new File("predmetstream.txt");
+			ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream(f)));
+			try {
+				BazaPredmeta.getInstance().setPredmeti((ArrayList<Predmet>) ois.readObject());
+			} finally {
+				ois.close();
+			}
+		} catch (Exception e) {
+
+		}
 
 		this.addWindowListener(new WindowListener() {
 
@@ -105,12 +119,33 @@ public class MainWindow extends JFrame {
 				int option = JOptionPane.showOptionDialog(instance, "Da li želite da napustite aplikaciju?",
 						"Izlazak iz aplikacije", 0, JOptionPane.QUESTION_MESSAGE, null, options, null);
 				if (option == JOptionPane.YES_OPTION) {
-					File f = new File("studentstream.txt");
+					File fs = new File("studentstream.txt");
+					File fp = new File("predmetstream.txt"); 
 					ObjectOutputStream oos;
 					try {
-						oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(f)));
+						oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(fs)));
 						try {
 							oos.writeObject(BazaStudenata.getInstance().getStudenti());
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} finally {
+							try {
+								oos.close();
+							} catch (IOException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+						}
+					} catch (IOException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
+					
+					try {
+						oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(fp)));
+						try {
+							oos.writeObject(BazaPredmeta.getInstance().getPredmeti());
 						} catch (IOException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
