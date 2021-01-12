@@ -2,6 +2,7 @@ package controller;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -9,6 +10,7 @@ import javax.swing.JOptionPane;
 import model.BazaPredmeta;
 import model.BazaProfesora;
 import model.Predmet;
+import model.Profesor;
 import view.DodajProfesora;
 import view.IzmeniProfesora;
 import view.MainWindow;
@@ -29,6 +31,7 @@ public class ProfesoriController {
 	public void dodajProfesora(JFrame parent) throws FileNotFoundException, ClassNotFoundException, IOException {
 		DodajProfesora dodaj = new DodajProfesora(parent, "Dodavanje profesora", true);
 		dodaj.setVisible(true);
+		BazaProfesora.getInstance().setFiltriraniProfesori(new ArrayList<Profesor>());
 
 		MainWindow.getInstance().azurirajPrikaz("DODAT", -1);
 	}
@@ -38,6 +41,7 @@ public class ProfesoriController {
 		if (row != -1) {
 			IzmeniProfesora izmeni = new IzmeniProfesora(parent, "Izmena profesora", true, row);
 			izmeni.setVisible(true);
+			BazaProfesora.getInstance().setFiltriraniProfesori(new ArrayList<Profesor>());
 
 			MainWindow.getInstance().azurirajPrikaz("IZMENJEN", -1);
 		} else {
@@ -56,12 +60,13 @@ public class ProfesoriController {
 					JOptionPane.QUESTION_MESSAGE, null, options, null);
 			if (option == JOptionPane.YES_OPTION) {
 				for (Predmet pred : BazaPredmeta.getInstance().getPredmeti()) {
-					if (pred.getProfesor().getBrLicne()
-							.equals(BazaProfesora.getInstance().getProfesori().get(row).getBrLicne()))
+					if (pred.getProfesor() != null && pred.getProfesor().getBrLicne()
+							.equals(BazaProfesora.getInstance().getFiltriraniProfesori().get(row).getBrLicne()))
 						pred.setProfesor(null);
 				}
 
 				BazaProfesora.getInstance().obrisiProfesora(row);
+				BazaProfesora.getInstance().setFiltriraniProfesori(new ArrayList<Profesor>());
 				MainWindow.getInstance().azurirajPrikaz("OBRISAN", -1);
 			}
 

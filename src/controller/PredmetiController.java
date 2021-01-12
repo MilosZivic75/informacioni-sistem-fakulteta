@@ -3,6 +3,7 @@ package controller;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -59,26 +60,36 @@ public class PredmetiController {
 			String[] options = new String[2];
 			options[0] = new String("Da");
 			options[1] = new String("Ne");
-			int option = JOptionPane.showOptionDialog(parent,
-					"Da li ste sigurni da želite da obrišete predmet?", "Brisanje predmeta", 0,
-					JOptionPane.QUESTION_MESSAGE, null, options, null);
+			int option = JOptionPane.showOptionDialog(parent, "Da li ste sigurni da želite da obrišete predmet?",
+					"Brisanje predmeta", 0, JOptionPane.QUESTION_MESSAGE, null, options, null);
 			if (option == JOptionPane.YES_OPTION) {
 				for (Student s : BazaStudenata.getInstance().getStudenti()) {
-					for (Predmet p : s.getNepolIspiti()) {
-						if (p.getSifra().equals(BazaPredmeta.getInstance().getPredmeti().get(row).getSifra()))
-							s.getNepolIspiti().remove(p);
+					Iterator<Predmet> it = s.getNepolIspiti().iterator();
+					while (it.hasNext()) {
+						Predmet p = it.next();
+						if (p.getSifra().equals(BazaPredmeta.getInstance().getFiltriraniPredmeti().get(row).getSifra()))
+							it.remove();
 					}
-
-					for (Ocena o : s.getPolIspiti()) {
+					Iterator<Ocena> it2 = s.getPolIspiti().iterator();
+					while (it2.hasNext()) {
+						Ocena o = it2.next();
 						if (o.getPredmet().getSifra()
-								.equals(BazaPredmeta.getInstance().getPredmeti().get(row).getSifra()))
-							s.getPolIspiti().remove(o);
+								.equals(BazaPredmeta.getInstance().getFiltriraniPredmeti().get(row).getSifra())) {
+							it2.remove();
+							int zbirOcena = 0;
+							for (Ocena o1 : s.getPolIspiti()) {
+								zbirOcena += o1.getOcena();
+							}
+							s.setProsOcena(
+									s.getPolIspiti().size() != 0 ? (double) zbirOcena / s.getPolIspiti().size() : 0);
+						}
+							
 					}
 				}
 
 				for (Profesor prof : BazaProfesora.getInstance().getProfesori()) {
 					for (Predmet pred : prof.getPredmeti()) {
-						if (pred.getSifra().equals(BazaPredmeta.getInstance().getPredmeti().get(row).getSifra()))
+						if (pred.getSifra().equals(BazaPredmeta.getInstance().getFiltriraniPredmeti().get(row).getSifra()))
 							prof.getPredmeti().remove(pred);
 					}
 				}

@@ -20,7 +20,7 @@ import javax.swing.table.TableCellRenderer;
 import model.BazaStudenata;
 import model.Student;
 
-class ButtonColumnStudenti implements TableCellRenderer {
+public class ButtonColumnStudenti implements TableCellRenderer {
 
 	private JTable table = null;
 	private MouseEventReposter reporter = null;

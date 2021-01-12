@@ -16,7 +16,6 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
 import model.BazaPredmeta;
@@ -37,17 +36,8 @@ public class IzmeniPredmet extends JDialog {
 		setSize(dim.width / 2, 2 * dim.height / 3);
 		setLocationRelativeTo(parent);
 
-		JTabbedPane tabbedPane = new JTabbedPane();
 		JPanel info = new JPanel(new GridBagLayout());
-		JPanel profesori = new JPanel();
-		JPanel suPolozili = new JPanel();
-		JPanel nisuPolozili = new JPanel();
-
-		add(tabbedPane, BorderLayout.CENTER);
-		tabbedPane.addTab("Informacije", info);
-		tabbedPane.addTab("Profesori", profesori);
-		tabbedPane.addTab("Studenti položili", suPolozili);
-		tabbedPane.addTab("Studenti nisu položili", nisuPolozili);
+		add(info, BorderLayout.CENTER);
 		
 		Predmet predmet = BazaPredmeta.getInstance().getFiltriraniPredmeti().get(row);
 		

@@ -73,7 +73,7 @@ public class DodajProfesora extends JDialog {
 		comboTitule.setSelectedIndex(0);
 
 		JLabel lblZvanje = new JLabel("Zvanje*");
-		String[] zvanja = { "Saradnik u nastavi", "Asistent", "Asistent sa doktoratom", "Vanredni profesor",
+		String[] zvanja = { "Saradnik u nastavi", "Asistent", "Asistent sa doktoratom", "Docent", "Vanredni profesor",
 				"Redovni profesor", "Profesor emeritus" };
 		JComboBox<String> comboZvanja = new JComboBox<String>(zvanja);
 		comboZvanja.setSelectedIndex(0);
@@ -94,17 +94,17 @@ public class DodajProfesora extends JDialog {
 					potvrdi.setEnabled(false);
 					tfDatumRodj.setText("Neispravan unos! (dd/MM/yyyy)");
 				} else if (tfAdresa.getText().trim().isEmpty()
-						|| !tfAdresa.getText().matches("[A-Za-z0-9ŠšŽžĐđĆćČč ]+")) {
+						|| !tfAdresa.getText().matches("[A-Za-z0-9ŠšŽžĐđĆćČč, ]+")) {
 					potvrdi.setEnabled(false);
 					tfAdresa.setText("Neispravan unos!");
-				} else if (tfBrTel.getText().trim().isEmpty() || !tfBrTel.getText().matches("[+]?[0-9]+")) {
+				} else if (tfBrTel.getText().trim().isEmpty() || !tfBrTel.getText().matches("[+]?[0-9/-]+")) {
 					potvrdi.setEnabled(false);
 					tfBrTel.setText("Neispravan unos!");
 				} else if (tfEmail.getText().trim().isEmpty()) {
 					potvrdi.setEnabled(false);
 					tfEmail.setText("Neispravan unos!");
 				} else if (tfAdresaKanc.getText().trim().isEmpty()
-						|| !tfAdresaKanc.getText().matches("[A-Za-z0-9ŠšŽžĐđĆćČč ]+")) {
+						|| !tfAdresaKanc.getText().matches("[A-Za-z0-9ŠšŽžĐđĆćČč, ]+")) {
 					potvrdi.setEnabled(false);
 					tfAdresaKanc.setText("Neispravan unos!");
 				} else if (tfBrLicne.getText().trim().isEmpty() || !tfBrLicne.getText().matches("[0-9]{9}")) {
@@ -142,17 +142,17 @@ public class DodajProfesora extends JDialog {
 					potvrdi.setEnabled(false);
 					tfDatumRodj.setText("Neispravan unos! (dd/MM/yyyy)");
 				} else if (tfAdresa.getText().trim().isEmpty()
-						|| !tfAdresa.getText().matches("[A-Za-z0-9ŠšŽžĐđĆćČč ]+")) {
+						|| !tfAdresa.getText().matches("[A-Za-z0-9ŠšŽžĐđĆćČč, ]+")) {
 					potvrdi.setEnabled(false);
 					tfAdresa.setText("Neispravan unos!");
-				} else if (tfBrTel.getText().trim().isEmpty() || !tfBrTel.getText().matches("[+]?[0-9]+")) {
+				} else if (tfBrTel.getText().trim().isEmpty() || !tfBrTel.getText().matches("[+]?[0-9/-]+")) {
 					potvrdi.setEnabled(false);
 					tfBrTel.setText("Neispravan unos!");
 				} else if (tfEmail.getText().trim().isEmpty()) {
 					potvrdi.setEnabled(false);
 					tfEmail.setText("Neispravan unos!");
 				} else if (tfAdresaKanc.getText().trim().isEmpty()
-						|| !tfAdresaKanc.getText().matches("[A-Za-z0-9ŠšŽžĐđĆćČč ]+")) {
+						|| !tfAdresaKanc.getText().matches("[A-Za-z0-9ŠšŽžĐđĆćČč, ]+")) {
 					potvrdi.setEnabled(false);
 					tfAdresaKanc.setText("Neispravan unos!");
 				} else if (tfBrLicne.getText().trim().isEmpty() || !tfBrLicne.getText().matches("[0-9]{9}")) {
@@ -190,17 +190,17 @@ public class DodajProfesora extends JDialog {
 					potvrdi.setEnabled(false);
 					tfDatumRodj.setText("Neispravan unos! (dd/MM/yyyy)");
 				} else if (tfAdresa.getText().trim().isEmpty()
-						|| !tfAdresa.getText().matches("[A-Za-z0-9ŠšŽžĐđĆćČč ]+")) {
+						|| !tfAdresa.getText().matches("[A-Za-z0-9ŠšŽžĐđĆćČč, ]+")) {
 					potvrdi.setEnabled(false);
 					tfAdresa.setText("Neispravan unos!");
-				} else if (tfBrTel.getText().trim().isEmpty() || !tfBrTel.getText().matches("[+]?[0-9]+")) {
+				} else if (tfBrTel.getText().trim().isEmpty() || !tfBrTel.getText().matches("[+]?[0-9/-]+")) {
 					potvrdi.setEnabled(false);
 					tfBrTel.setText("Neispravan unos!");
 				} else if (tfEmail.getText().trim().isEmpty()) {
 					potvrdi.setEnabled(false);
 					tfEmail.setText("Neispravan unos!");
 				} else if (tfAdresaKanc.getText().trim().isEmpty()
-						|| !tfAdresaKanc.getText().matches("[A-Za-z0-9ŠšŽžĐđĆćČč ]+")) {
+						|| !tfAdresaKanc.getText().matches("[A-Za-z0-9ŠšŽžĐđĆćČč, ]+")) {
 					potvrdi.setEnabled(false);
 					tfAdresaKanc.setText("Neispravan unos!");
 				} else if (tfBrLicne.getText().trim().isEmpty() || !tfBrLicne.getText().matches("[0-9]{9}")) {
@@ -238,17 +238,17 @@ public class DodajProfesora extends JDialog {
 					potvrdi.setEnabled(false);
 					tfDatumRodj.setText("Neispravan unos! (dd/MM/yyyy)");
 				} else if (tfAdresa.getText().trim().isEmpty()
-						|| !tfAdresa.getText().matches("[A-Za-z0-9ŠšŽžĐđĆćČč ]+")) {
+						|| !tfAdresa.getText().matches("[A-Za-z0-9ŠšŽžĐđĆćČč, ]+")) {
 					potvrdi.setEnabled(false);
 					tfAdresa.setText("Neispravan unos!");
-				} else if (tfBrTel.getText().trim().isEmpty() || !tfBrTel.getText().matches("[+]?[0-9]+")) {
+				} else if (tfBrTel.getText().trim().isEmpty() || !tfBrTel.getText().matches("[+]?[0-9/-]+")) {
 					potvrdi.setEnabled(false);
 					tfBrTel.setText("Neispravan unos!");
 				} else if (tfEmail.getText().trim().isEmpty()) {
 					potvrdi.setEnabled(false);
 					tfEmail.setText("Neispravan unos!");
 				} else if (tfAdresaKanc.getText().trim().isEmpty()
-						|| !tfAdresaKanc.getText().matches("[A-Za-z0-9ŠšŽžĐđĆćČč ]+")) {
+						|| !tfAdresaKanc.getText().matches("[A-Za-z0-9ŠšŽžĐđĆćČč, ]+")) {
 					potvrdi.setEnabled(false);
 					tfAdresaKanc.setText("Neispravan unos!");
 				} else if (tfBrLicne.getText().trim().isEmpty() || !tfBrLicne.getText().matches("[0-9]{9}")) {
@@ -285,17 +285,17 @@ public class DodajProfesora extends JDialog {
 					potvrdi.setEnabled(false);
 					tfDatumRodj.setText("Neispravan unos! (dd/MM/yyyy)");
 				} else if (tfAdresa.getText().trim().isEmpty()
-						|| !tfAdresa.getText().matches("[A-Za-z0-9ŠšŽžĐđĆćČč ]+")) {
+						|| !tfAdresa.getText().matches("[A-Za-z0-9ŠšŽžĐđĆćČč, ]+")) {
 					potvrdi.setEnabled(false);
 					tfAdresa.setText("Neispravan unos!");
-				} else if (tfBrTel.getText().trim().isEmpty() || !tfBrTel.getText().matches("[+]?[0-9]+")) {
+				} else if (tfBrTel.getText().trim().isEmpty() || !tfBrTel.getText().matches("[+]?[0-9/-]+")) {
 					potvrdi.setEnabled(false);
 					tfBrTel.setText("Neispravan unos!");
 				} else if (tfEmail.getText().trim().isEmpty()) {
 					potvrdi.setEnabled(false);
 					tfEmail.setText("Neispravan unos!");
 				} else if (tfAdresaKanc.getText().trim().isEmpty()
-						|| !tfAdresaKanc.getText().matches("[A-Za-z0-9ŠšŽžĐđĆćČč ]+")) {
+						|| !tfAdresaKanc.getText().matches("[A-Za-z0-9ŠšŽžĐđĆćČč, ]+")) {
 					potvrdi.setEnabled(false);
 					tfAdresaKanc.setText("Neispravan unos!");
 				} else if (tfBrLicne.getText().trim().isEmpty() || !tfBrLicne.getText().matches("[0-9]{9}")) {
@@ -333,17 +333,17 @@ public class DodajProfesora extends JDialog {
 					potvrdi.setEnabled(false);
 					tfDatumRodj.setText("Neispravan unos! (dd/MM/yyyy)");
 				} else if (tfAdresa.getText().trim().isEmpty()
-						|| !tfAdresa.getText().matches("[A-Za-z0-9ŠšŽžĐđĆćČč ]+")) {
+						|| !tfAdresa.getText().matches("[A-Za-z0-9ŠšŽžĐđĆćČč, ]+")) {
 					potvrdi.setEnabled(false);
 					tfAdresa.setText("Neispravan unos!");
-				} else if (tfBrTel.getText().trim().isEmpty() || !tfBrTel.getText().matches("[+]?[0-9]+")) {
+				} else if (tfBrTel.getText().trim().isEmpty() || !tfBrTel.getText().matches("[+]?[0-9/-]+")) {
 					potvrdi.setEnabled(false);
 					tfBrTel.setText("Neispravan unos!");
 				} else if (tfEmail.getText().trim().isEmpty()) {
 					potvrdi.setEnabled(false);
 					tfEmail.setText("Neispravan unos!");
 				} else if (tfAdresaKanc.getText().trim().isEmpty()
-						|| !tfAdresaKanc.getText().matches("[A-Za-z0-9ŠšŽžĐđĆćČč ]+")) {
+						|| !tfAdresaKanc.getText().matches("[A-Za-z0-9ŠšŽžĐđĆćČč, ]+")) {
 					potvrdi.setEnabled(false);
 					tfAdresaKanc.setText("Neispravan unos!");
 				} else if (tfBrLicne.getText().trim().isEmpty() || !tfBrLicne.getText().matches("[0-9]{9}")) {
@@ -381,17 +381,17 @@ public class DodajProfesora extends JDialog {
 					potvrdi.setEnabled(false);
 					tfDatumRodj.setText("Neispravan unos! (dd/MM/yyyy)");
 				} else if (tfAdresa.getText().trim().isEmpty()
-						|| !tfAdresa.getText().matches("[A-Za-z0-9ŠšŽžĐđĆćČč ]+")) {
+						|| !tfAdresa.getText().matches("[A-Za-z0-9ŠšŽžĐđĆćČč, ]+")) {
 					potvrdi.setEnabled(false);
 					tfAdresa.setText("Neispravan unos!");
-				} else if (tfBrTel.getText().trim().isEmpty() || !tfBrTel.getText().matches("[+]?[0-9]+")) {
+				} else if (tfBrTel.getText().trim().isEmpty() || !tfBrTel.getText().matches("[+]?[0-9/-]+")) {
 					potvrdi.setEnabled(false);
 					tfBrTel.setText("Neispravan unos!");
 				} else if (tfEmail.getText().trim().isEmpty()) {
 					potvrdi.setEnabled(false);
 					tfEmail.setText("Neispravan unos!");
 				} else if (tfAdresaKanc.getText().trim().isEmpty()
-						|| !tfAdresaKanc.getText().matches("[A-Za-z0-9ŠšŽžĐđĆćČč ]+")) {
+						|| !tfAdresaKanc.getText().matches("[A-Za-z0-9ŠšŽžĐđĆćČč, ]+")) {
 					potvrdi.setEnabled(false);
 					tfAdresaKanc.setText("Neispravan unos!");
 				} else if (tfBrLicne.getText().trim().isEmpty() || !tfBrLicne.getText().matches("[0-9]{9}")) {
@@ -429,17 +429,17 @@ public class DodajProfesora extends JDialog {
 					potvrdi.setEnabled(false);
 					tfDatumRodj.setText("Neispravan unos! (dd/MM/yyyy)");
 				} else if (tfAdresa.getText().trim().isEmpty()
-						|| !tfAdresa.getText().matches("[A-Za-z0-9ŠšŽžĐđĆćČč ]+")) {
+						|| !tfAdresa.getText().matches("[A-Za-z0-9ŠšŽžĐđĆćČč, ]+")) {
 					potvrdi.setEnabled(false);
 					tfAdresa.setText("Neispravan unos!");
-				} else if (tfBrTel.getText().trim().isEmpty() || !tfBrTel.getText().matches("[+]?[0-9]+")) {
+				} else if (tfBrTel.getText().trim().isEmpty() || !tfBrTel.getText().matches("[+]?[0-9/-]+")) {
 					potvrdi.setEnabled(false);
 					tfBrTel.setText("Neispravan unos!");
 				} else if (tfEmail.getText().trim().isEmpty()) {
 					potvrdi.setEnabled(false);
 					tfEmail.setText("Neispravan unos!");
 				} else if (tfAdresaKanc.getText().trim().isEmpty()
-						|| !tfAdresaKanc.getText().matches("[A-Za-z0-9ŠšŽžĐđĆćČč ]+")) {
+						|| !tfAdresaKanc.getText().matches("[A-Za-z0-9ŠšŽžĐđĆćČč, ]+")) {
 					potvrdi.setEnabled(false);
 					tfAdresaKanc.setText("Neispravan unos!");
 				} else if (tfBrLicne.getText().trim().isEmpty() || !tfBrLicne.getText().matches("[0-9]{9}")) {
@@ -562,6 +562,8 @@ public class DodajProfesora extends JDialog {
 			return Zvanja.asistent;
 		case "Asistent sa doktoratom":
 			return Zvanja.asistentDr;
+		case "Docent":
+			return Zvanja.docent;
 		case "Vanredni profesor":
 			return Zvanja.vanrProf;
 		case "Redovni profesor":

@@ -21,6 +21,7 @@ import controller.PredmetiController;
 import controller.ProfesoriController;
 import controller.StudentiController;
 import model.BazaPredmeta;
+import model.BazaProfesora;
 import model.BazaStudenata;
 
 public class Menu extends JMenuBar {
@@ -84,6 +85,7 @@ public class Menu extends JMenuBar {
 				if (option == JOptionPane.YES_OPTION) {
 					File fs = new File("studentstream.txt");
 					File fp = new File("predmetstream.txt"); 
+					File fprof = new File("profesorstream.txt");
 					ObjectOutputStream oos;
 					try {
 						oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(fs)));
@@ -109,6 +111,26 @@ public class Menu extends JMenuBar {
 						oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(fp)));
 						try {
 							oos.writeObject(BazaPredmeta.getInstance().getPredmeti());
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} finally {
+							try {
+								oos.close();
+							} catch (IOException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+						}
+					} catch (IOException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
+					
+					try {
+						oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(fprof)));
+						try {
+							oos.writeObject(BazaProfesora.getInstance().getProfesori());
 						} catch (IOException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();

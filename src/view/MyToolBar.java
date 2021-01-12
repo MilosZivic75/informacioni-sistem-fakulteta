@@ -21,8 +21,10 @@ import controller.PredmetiController;
 import controller.ProfesoriController;
 import controller.StudentiController;
 import model.BazaPredmeta;
+import model.BazaProfesora;
 import model.BazaStudenata;
 import model.Predmet;
+import model.Profesor;
 import model.Student;
 
 public class MyToolBar extends JToolBar {
@@ -164,6 +166,10 @@ public class MyToolBar extends JToolBar {
 					} else if (MainWindow.getInstance().getTabIndex() == 2) {
 						BazaPredmeta.getInstance().setFilter(txt.getText().trim());
 						BazaPredmeta.getInstance().setFiltriraniPredmeti(new ArrayList<Predmet>());
+						MainWindow.getInstance().azurirajPrikaz("FILTER", -1);
+					} else if (MainWindow.getInstance().getTabIndex() == 1) {
+						BazaProfesora.getInstance().setFilter(txt.getText().trim());
+						BazaProfesora.getInstance().setFiltriraniProfesori(new ArrayList<Profesor>());
 						MainWindow.getInstance().azurirajPrikaz("FILTER", -1);
 					}
 				} catch (ClassNotFoundException | IOException e2) {

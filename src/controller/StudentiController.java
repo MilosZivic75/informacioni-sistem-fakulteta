@@ -3,6 +3,7 @@ package controller;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -60,14 +61,19 @@ public class StudentiController {
 					JOptionPane.QUESTION_MESSAGE, null, options, null);
 			if (option == JOptionPane.YES_OPTION) {
 				for (Predmet p : BazaPredmeta.getInstance().getPredmeti()) {
-					for (Student s : p.getNisuPolozili()) {
-						if (s.getIndeks().equals(BazaStudenata.getInstance().getStudenti().get(row).getIndeks()))
-							p.getNisuPolozili().remove(s);
+					Iterator<Student> it = p.getNisuPolozili().iterator();
+					while (it.hasNext()) {
+						Student s = it.next();
+						if (s.getIndeks().equals(BazaStudenata.getInstance().getFiltriraniStudenti().get(row).getIndeks())) {
+							it.remove();
+						}
 					}
-
-					for (Student s : p.getSuPolozili()) {
-						if (s.getIndeks().equals(BazaStudenata.getInstance().getStudenti().get(row).getIndeks()))
-							p.getSuPolozili().remove(s);
+					it = p.getSuPolozili().iterator();
+					while (it.hasNext()) {
+						Student s = it.next();
+						if (s.getIndeks().equals(BazaStudenata.getInstance().getFiltriraniStudenti().get(row).getIndeks())) {
+							it.remove();
+						}
 					}
 				}
 

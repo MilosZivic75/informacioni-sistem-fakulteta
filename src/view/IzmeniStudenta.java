@@ -40,11 +40,11 @@ public class IzmeniStudenta extends JDialog {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	Student student;
-	JTable tabelaPolozenih;
-	JTable tabelaNepolozenih;
-	JLabel ukEspb;
-	JLabel prosekOcena;
+	private Student student;
+	private JTable tabelaPolozenih;
+	private JTable tabelaNepolozenih;
+	private JLabel ukEspb;
+	private JLabel prosekOcena;
 
 	public IzmeniStudenta(JFrame parent, String title, boolean mod, int row) {
 		super(parent, title, mod);

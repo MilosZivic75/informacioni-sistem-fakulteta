@@ -30,6 +30,7 @@ public class HelpDialog extends JDialog {
 				+ " Nešto o projektu: CTRL + A ili ALT + H -> ALT + A\n\n"
 				+ "< Svi datumi u programu su formata dd/MM/yyyy\n"
 				+ " Pretraga studenata se vrši tako što napišete prezime(obavezno), ime i indeks(ili njihove delove).\n"
+				+ " Pretraga profesora se vrši tako što napišete prezime(obavezno) i ime(ili njihove delove).\n"
 				+ " Pretraga predmeta se vrši tako što napišete šifru predmeta(ili njegov deo)(obavezno).</pre></html>"), BorderLayout.NORTH);
 	}
 }

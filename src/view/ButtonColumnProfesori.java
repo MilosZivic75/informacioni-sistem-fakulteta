@@ -17,16 +17,15 @@ import javax.swing.UIManager;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
 
-import model.BazaPredmeta;
-import model.Predmet;
+import model.BazaProfesora;
+import model.Profesor;
 
-public class ButtonColumnPredmeti implements TableCellRenderer {
-
+public class ButtonColumnProfesori implements TableCellRenderer {
 	private JTable table = null;
 	private MouseEventReposter reporter = null;
 	private JComponent editor;
 
-	public ButtonColumnPredmeti(JComponent editor) {
+	public ButtonColumnProfesori(JComponent editor) {
 		this.editor = editor;
 		this.editor.setBorder(UIManager.getBorder("TableHeader.cellBorder"));
 	}
@@ -106,131 +105,106 @@ public class ButtonColumnPredmeti implements TableCellRenderer {
 				editor.validate();
 				setDispatchComponent(e);
 				repostEvent(e);
-				
-				switch(column) {
+
+				switch (column) {
 				case 0:
-					if (!BazaPredmeta.getInstance().isSifraAsc()) {
-						Collections.sort(BazaPredmeta.getInstance().getPredmeti(), new Comparator<Predmet>() {
+					if (!BazaProfesora.getInstance().isImeAsc()) {
+						Collections.sort(BazaProfesora.getInstance().getProfesori(), new Comparator<Profesor>() {
 
 							@Override
-							public int compare(Predmet o1, Predmet o2) {
-								return o1.getSifra().compareTo(o2.getSifra());
+							public int compare(Profesor o1, Profesor o2) {
+								return o1.getIme().compareTo(o2.getIme());
 							}
+
 						});
-						BazaPredmeta.getInstance().setSifraAsc(true);
+						BazaProfesora.getInstance().setImeAsc(true);
 					} else {
-						Collections.sort(BazaPredmeta.getInstance().getPredmeti(), new Comparator<Predmet>() {
+						Collections.sort(BazaProfesora.getInstance().getProfesori(), new Comparator<Profesor>() {
 
 							@Override
-							public int compare(Predmet o1, Predmet o2) {
-								return o2.getSifra().compareTo(o1.getSifra());
+							public int compare(Profesor o1, Profesor o2) {
+								return o2.getIme().compareTo(o1.getIme());
 							}
 
 						});
-						BazaPredmeta.getInstance().setSifraAsc(false);
+						BazaProfesora.getInstance().setImeAsc(false);
 					}
 					break;
 				case 1:
-					if (!BazaPredmeta.getInstance().isNazivAsc()) {
-						Collections.sort(BazaPredmeta.getInstance().getPredmeti(), new Comparator<Predmet>() {
+					if (!BazaProfesora.getInstance().isPrezimeAsc()) {
+						Collections.sort(BazaProfesora.getInstance().getProfesori(), new Comparator<Profesor>() {
 
 							@Override
-							public int compare(Predmet o1, Predmet o2) {
-								return o1.getNaziv().compareTo(o2.getNaziv());
+							public int compare(Profesor o1, Profesor o2) {
+								return o1.getPrezime().compareTo(o2.getPrezime());
 							}
 
 						});
-						BazaPredmeta.getInstance().setNazivAsc(true);
+						BazaProfesora.getInstance().setPrezimeAsc(true);
 					} else {
-						Collections.sort(BazaPredmeta.getInstance().getPredmeti(), new Comparator<Predmet>() {
+						Collections.sort(BazaProfesora.getInstance().getProfesori(), new Comparator<Profesor>() {
 
 							@Override
-							public int compare(Predmet o1, Predmet o2) {
-								return o2.getNaziv().compareTo(o1.getNaziv());
+							public int compare(Profesor o1, Profesor o2) {
+								return o2.getPrezime().compareTo(o1.getPrezime());
 							}
 
 						});
-						BazaPredmeta.getInstance().setNazivAsc(false);
+						BazaProfesora.getInstance().setPrezimeAsc(false);
 					}
 					break;
 				case 2:
-					if (!BazaPredmeta.getInstance().isEspbAsc()) {
-						Collections.sort(BazaPredmeta.getInstance().getPredmeti(), new Comparator<Predmet>() {
+					if (!BazaProfesora.getInstance().isTitulaAsc()) {
+						Collections.sort(BazaProfesora.getInstance().getProfesori(), new Comparator<Profesor>() {
 
 							@Override
-							public int compare(Predmet o1, Predmet o2) {
-								return Integer.compare(o1.getEspb(), o2.getEspb());
+							public int compare(Profesor o1, Profesor o2) {
+								return o1.getTitula().compareTo(o2.getTitula());
 							}
 
 						});
-						BazaPredmeta.getInstance().setEspbAsc(true);
+						BazaProfesora.getInstance().setTitulaAsc(true);
 					} else {
-						Collections.sort(BazaPredmeta.getInstance().getPredmeti(), new Comparator<Predmet>() {
+						Collections.sort(BazaProfesora.getInstance().getProfesori(), new Comparator<Profesor>() {
 
 							@Override
-							public int compare(Predmet o1, Predmet o2) {
-								return Integer.compare(o2.getEspb(), o1.getEspb());
+							public int compare(Profesor o1, Profesor o2) {
+								return o2.getTitula().compareTo(o1.getTitula());
 							}
 
 						});
-						BazaPredmeta.getInstance().setEspbAsc(false);
+						BazaProfesora.getInstance().setTitulaAsc(false);
 					}
 					break;
 				case 3:
-					if (!BazaPredmeta.getInstance().isGodinaAsc()) {
-						Collections.sort(BazaPredmeta.getInstance().getPredmeti(), new Comparator<Predmet>() {
+					if (!BazaProfesora.getInstance().isZvanjeAsc()) {
+						Collections.sort(BazaProfesora.getInstance().getProfesori(), new Comparator<Profesor>() {
 
 							@Override
-							public int compare(Predmet o1, Predmet o2) {
-								return Integer.compare(o1.getGodStudija(), o2.getGodStudija());
+							public int compare(Profesor o1, Profesor o2) {
+								return o1.getZvanje().compareTo(o2.getZvanje());
 							}
 
 						});
-						BazaPredmeta.getInstance().setGodinaAsc(true);
+						BazaProfesora.getInstance().setZvanjeAsc(true);
 					} else {
-						Collections.sort(BazaPredmeta.getInstance().getPredmeti(), new Comparator<Predmet>() {
+						Collections.sort(BazaProfesora.getInstance().getProfesori(), new Comparator<Profesor>() {
 
 							@Override
-							public int compare(Predmet o1, Predmet o2) {
-								return Integer.compare(o2.getGodStudija(), o1.getGodStudija());
+							public int compare(Profesor o1, Profesor o2) {
+								return o2.getZvanje().compareTo(o1.getZvanje());
 							}
 
 						});
-						BazaPredmeta.getInstance().setGodinaAsc(false);
-					}
-					break;
-				case 4:
-					if (!BazaPredmeta.getInstance().isSemestarAsc()) {
-						Collections.sort(BazaPredmeta.getInstance().getPredmeti(), new Comparator<Predmet>() {
-
-							@Override
-							public int compare(Predmet o1, Predmet o2) {
-								return o1.getSemestar().compareTo(o2.getSemestar());
-							}
-
-						});
-						BazaPredmeta.getInstance().setSemestarAsc(true);
-					} else {
-						Collections.sort(BazaPredmeta.getInstance().getPredmeti(), new Comparator<Predmet>() {
-
-							@Override
-							public int compare(Predmet o1, Predmet o2) {
-								return o2.getSemestar().compareTo(o1.getSemestar());
-							}
-
-						});
-						BazaPredmeta.getInstance().setSemestarAsc(false);
+						BazaProfesora.getInstance().setZvanjeAsc(false);
 					}
 					break;
 				}
 
-				
-
-				BazaPredmeta.getInstance().setFiltriraniPredmeti(new ArrayList<Predmet>());
+				BazaProfesora.getInstance().setFiltriraniProfesori(new ArrayList<Profesor>());
 				try {
 					MainWindow.getInstance().azurirajPrikaz("SORT", -1);
 				} catch (ClassNotFoundException | IOException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
@@ -243,5 +217,4 @@ public class ButtonColumnPredmeti implements TableCellRenderer {
 			header.remove(editor);
 		}
 	}
-
 }

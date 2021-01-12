@@ -15,8 +15,10 @@ import javax.swing.JTable;
 import javax.swing.table.TableColumn;
 
 import model.BazaPredmeta;
+import model.BazaProfesora;
 import model.BazaStudenata;
 import model.Predmet;
+import model.Profesor;
 import model.Student;
 
 import java.awt.Toolkit;
@@ -84,6 +86,18 @@ public class MainWindow extends JFrame {
 		} catch (Exception e) {
 
 		}
+		
+		try {
+			File f = new File("profesorstream.txt");
+			ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream(f)));
+			try {
+				BazaProfesora.getInstance().setProfesori((ArrayList<Profesor>) ois.readObject());
+			} finally {
+				ois.close();
+			}
+		} catch (Exception e) {
+
+		}
 
 		this.addWindowListener(new WindowListener() {
 
@@ -121,6 +135,7 @@ public class MainWindow extends JFrame {
 				if (option == JOptionPane.YES_OPTION) {
 					File fs = new File("studentstream.txt");
 					File fp = new File("predmetstream.txt"); 
+					File fprof = new File("profesorstream.txt");
 					ObjectOutputStream oos;
 					try {
 						oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(fs)));
@@ -146,6 +161,26 @@ public class MainWindow extends JFrame {
 						oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(fp)));
 						try {
 							oos.writeObject(BazaPredmeta.getInstance().getPredmeti());
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} finally {
+							try {
+								oos.close();
+							} catch (IOException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+						}
+					} catch (IOException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
+					
+					try {
+						oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(fprof)));
+						try {
+							oos.writeObject(BazaProfesora.getInstance().getProfesori());
 						} catch (IOException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
@@ -225,6 +260,14 @@ public class MainWindow extends JFrame {
 		tabbedPane.addTab("Profesori", profesori);
 
 		tabelaProfesora = new TabelaProfesora();
+		col = tabelaProfesora.getColumnModel().getColumn(0);
+		col.setHeaderRenderer(new ButtonColumnProfesori(new JButton("Ime", icon)));
+		col = tabelaProfesora.getColumnModel().getColumn(1);
+		col.setHeaderRenderer(new ButtonColumnProfesori(new JButton("Prezime", icon)));
+		col = tabelaProfesora.getColumnModel().getColumn(2);
+		col.setHeaderRenderer(new ButtonColumnProfesori(new JButton("Titula", icon)));
+		col = tabelaProfesora.getColumnModel().getColumn(3);
+		col.setHeaderRenderer(new ButtonColumnProfesori(new JButton("Zvanje", icon)));
 
 		JScrollPane scrollPaneProf = new JScrollPane(tabelaProfesora);
 		profesori.add(scrollPaneProf, BorderLayout.CENTER);
