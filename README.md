@@ -1,4 +1,4 @@
-# oisisi_projekat
+# Informacioni sistem fakulteta
 
 Eclipse versions:
 	Milos Zivic (student 1) - 19-09/2020-12
